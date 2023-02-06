@@ -79,7 +79,7 @@ public class KafkaConsumerConfig {
         RetryTemplate retryTemplate = new RetryTemplate();
 
         FixedBackOffPolicy fixedBackOffPolicy = new FixedBackOffPolicy();
-        fixedBackOffPolicy.setBackOffPeriod(Long.parseLong(backOfPeriod)); // nece saniyede bir cehd edecek
+        fixedBackOffPolicy.setBackOffPeriod(Long.parseLong(backOfPeriod));
         retryTemplate.setBackOffPolicy(fixedBackOffPolicy);
         retryTemplate.setRetryPolicy(getSimpleRetryPolicy());
         return retryTemplate;
@@ -87,9 +87,9 @@ public class KafkaConsumerConfig {
 
     public SimpleRetryPolicy getSimpleRetryPolicy() {
         final HashMap<Class<? extends Throwable>, Boolean> errorMap = new HashMap<>();
-        errorMap.put(NullPointerException.class, true); // false olanlari retry etmir
+        errorMap.put(NullPointerException.class, true);
         errorMap.put(IllegalArgumentException.class, true);
-        return new SimpleRetryPolicy(5, errorMap, true, true); // default value= mapin icerisinde olmuyanlari retry edir true olanda
+        return new SimpleRetryPolicy(5, errorMap, true, true);
     }
 
 
